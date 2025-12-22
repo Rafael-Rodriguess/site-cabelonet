@@ -194,17 +194,39 @@
         .footer-col h4 { color: var(--cor-secundaria); margin-bottom: 20px; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
 
-        /* --- RESPONSIVO --- */
+        /* --- RESPONSIVO (CELULAR) --- */
         @media (max-width: 768px) {
-            .nav-bar { flex-direction: column; height: auto; padding: 15px; }
+            .nav-bar { 
+                flex-direction: column; 
+                height: auto; 
+                padding: 20px 15px; 
+            }
+            
             .menu { display: none; }
+
+            /* AJUSTE 1: LOGO MAIOR NO CELULAR */
+            .logo-img { 
+                max-height: 100px; /* Aumentei de 50px para 100px. Pode ajustar se quiser mais */
+                margin-bottom: 15px; 
+            }
+
+            /* AJUSTE 2: POSIÇÃO DA FOTO NO CELULAR */
+            .hero {
+                /* O segredo aqui: '75% center' significa: 
+                   "Mostre a imagem focando 75% para a direita".
+                   Se quiser mais para a direita, aumente para 90% ou 100%.
+                   Se quiser mais para a esquerda, diminua para 50% ou 20%. 
+                */
+                background-position: 75% center !important; 
+            }
+
             .hero h1 { font-size: 2rem; }
             
             /* No celular, permitimos quebra de linha para o texto não sumir da tela */
-            .hero p { white-space: normal; font-size: 1.1rem; }
-            
-            /* Ajuste da logo no mobile */
-            .logo-img { max-height: 50px; margin-bottom: 10px; }
+            .hero p { 
+                white-space: normal; 
+                font-size: 1.1rem; 
+            }
         }
     </style>
 </head>
@@ -375,4 +397,5 @@
     </footer>
 
 </body>
+
 </html>
