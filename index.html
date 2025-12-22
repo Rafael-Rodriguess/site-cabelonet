@@ -195,34 +195,49 @@
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
 
         /* --- RESPONSIVO (CELULAR) --- */
+/* --- RESPONSIVO (CELULAR) --- */
         @media (max-width: 768px) {
-            .nav-bar { 
-                flex-direction: column; 
-                height: auto; 
-                padding: 20px 15px; 
+            .nav-bar {
+                /* Forçamos os itens a ficarem em linha (Logo na esq, Botão na dir) */
+                flex-direction: row; 
+                height: 80px; /* Altura FIXA do cabeçalho branco */
+                padding: 0 15px;
+                position: relative; /* Necessário para o truque funcionar */
             }
             
             .menu { display: none; }
 
-            /* AJUSTE 1: LOGO MAIOR NO CELULAR */
-            .logo-img { 
-                max-height: 150px; /* Aumentei de 50px para 100px. Pode ajustar se quiser mais */
-                margin-bottom: 5px; 
+            /* TRUQUE DA LOGO GIGANTE NO CELULAR */
+            .logo-img {
+                height: 120px; /* Tamanho da logo (maior que o cabeçalho de 80px) */
+                max-height: unset; /* Remove limites antigos */
+                width: auto;
+                
+                /* Posicionamento absoluto para "flutuar" */
+                position: absolute;
+                top: 5px; /* Distância do topo */
+                left: 15px; /* Distância da esquerda */
+                z-index: 1001; /* Garante que fique na frente de tudo */
             }
 
-            /* AJUSTE 2: POSIÇÃO DA FOTO NO CELULAR */
+            /* Ajuste do botão para ele não ficar embaixo da logo */
+            .btn-cliente {
+                position: absolute;
+                right: 15px; /* Cola o botão na direita */
+                top: 20px; /* Centraliza verticalmente na barra branca */
+                padding: 8px 15px; /* Botão um pouco menor no celular para caber */
+                font-size: 0.9rem;
+            }
+
+            /* Ajuste da imagem de fundo */
             .hero {
-                /* O segredo aqui: '75% center' significa: 
-                   "Mostre a imagem focando 75% para a direita".
-                   Se quiser mais para a direita, aumente para 90% ou 100%.
-                   Se quiser mais para a esquerda, diminua para 50% ou 20%. 
-                */
-                background-position: 75% center !important; 
+                /* Aumentamos o padding superior para o texto não ficar escondido atrás da logo vazada */
+                padding-top: 100px; 
+                background-position: 85% center !important; 
             }
 
             .hero h1 { font-size: 2rem; }
             
-            /* No celular, permitimos quebra de linha para o texto não sumir da tela */
             .hero p { 
                 white-space: normal; 
                 font-size: 1.1rem; 
@@ -399,4 +414,5 @@
 </body>
 
 </html>
+
 
