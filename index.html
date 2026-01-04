@@ -15,7 +15,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         html { scroll-behavior: smooth; }
-        body { color: var(--cor-texto); line-height: 1.6; overflow-x: hidden; } /* overflow-x evita barra lateral indesejada */
+        body { color: var(--cor-texto); line-height: 1.6; overflow-x: hidden; }
         a { text-decoration: none; }
         ul { list-style: none; }
 
@@ -38,9 +38,8 @@
             height: 80px;
         }
 
-        /* AJUSTE 1: LOGO COMO IMAGEM */
         .logo-img {
-            max-height: 250px; /* Ajuste a altura da sua logo aqui */
+            max-height: 80px; /* Ajustado para o padrão da barra */
             width: auto;
             display: block;
         }
@@ -48,24 +47,24 @@
         .menu { display: flex; gap: 20px; }
         .menu a { color: var(--cor-primaria); font-weight: 500; transition: 0.3s; }
         .menu a:hover { color: var(--cor-secundaria); }
-        .btn-cliente { background-color: var(--cor-primaria); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; }
+        
+        .btn-cliente { 
+            background-color: var(--cor-primaria); 
+            color: white; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            transition: 0.3s;
+            text-align: center;
+        }
 
-        /* --- HERO SECTION (BANNER COM FOTO) --- */
-        /* AJUSTE 3: IMAGEM DE FUNDO */
+        /* --- HERO SECTION --- */
         .hero {
-            /* rgba(255, 255, 255, X) -> Isso cria uma camada BRANCA.
-               Mude o 0.7 para controlar a opacidade:
-               0.3 = Imagem mais visível
-               0.9 = Imagem muito apagada (quase branco total)
-            */
             background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                        url('background.png'); /* Certifique-se que o nome do arquivo está certo */
-            
+                        url('background.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            
-            color: white; /* Cor padrão, mas seu H1 já está sobrescrevendo para azul */
             padding: 160px 0 110px 0;
             text-align: center;
             min-height: 600px;
@@ -74,36 +73,13 @@
         }
 
         .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+        .hero-text-container { width: 100%; overflow: hidden; }
+        .hero p { font-size: 1.25rem; margin-bottom: 40px; }
 
-        /* AJUSTE 2: FRASE EM UMA LINHA */
-        .hero-text-container {
-            width: 100%;
-            overflow: hidden; /* Garante que não estoure */
-        }
-        
-        .hero p {
-            font-size: 1.25rem; /* Aumentei levemente */
-            margin-bottom: 40px;
-            
-            /* O segredo para manter em uma linha no Desktop */
-            white-space: nowrap; 
-            width: 100%;
-        }
-
-        /* --- ANIMAÇÃO DE PULSAR --- */
         @keyframes pulsar {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4);
-            }
-            50% {
-                transform: scale(1.05); /* Aumenta 5% */
-                box-shadow: 0 10px 25px rgba(255, 102, 0, 0.7); /* Sombra mais forte */
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4);
-            }
+            0% { transform: scale(1); box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 10px 25px rgba(255, 102, 0, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4); }
         }
 
         .btn-cta {
@@ -114,134 +90,106 @@
             border-radius: 50px;
             font-weight: bold;
             display: inline-block;
-            
-            /* AQUI ESTÁ A MÁGICA DO PULSO */
             animation: pulsar 2s infinite; 
             transition: all 0.3s;
-        }
-
-        /* Quando passar o mouse, ele para de pulsar e fica grande */
-        .btn-cta:hover {
-            animation: none; /* Pausa o pulso */
-            transform: scale(1.1); /* Fica maior */
-            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.8);
-            background-color: #e55c00; /* Laranja um pouco mais escuro */
         }
 
         /* --- DIFERENCIAIS --- */
         .features { padding: 60px 0; background-color: white; text-align: center; }
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
-        .feature-item i { font-size: 40px; color: var(--cor-secundaria); margin-bottom: 15px; display: block; }
 
-        /* --- PLANOS --- */
+        /* --- SEÇÃO DE PLANOS (AJUSTADA) --- */
         .planos-section { padding: 80px 0; background-color: var(--cor-fundo-claro); text-align: center; }
         .section-title { color: var(--cor-primaria); margin-bottom: 10px; font-size: 2.5rem; }
         .section-subtitle { margin-bottom: 50px; color: #666; }
         .categoria-titulo { background-color: var(--cor-primaria); color: white; display: inline-block; padding: 10px 30px; border-radius: 20px; margin: 40px 0 20px 0; }
         
-        .planos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .planos-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 20px; 
+            margin-bottom: 40px; 
+            align-items: stretch; /* Garante que todos os cards na mesma linha tenham a mesma altura */
+        }
         
-        .card-plano { background: white; padding: 30px 20px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: 0.3s; border-top: 5px solid transparent; }
+        .card-plano { 
+            background: white; 
+            padding: 30px 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+            transition: 0.3s; 
+            border-top: 5px solid transparent;
+            display: flex;
+            flex-direction: column; /* Organiza itens em pé */
+        }
+
         .card-plano:hover { transform: translateY(-10px); border-top: 5px solid var(--cor-secundaria); }
-        .card-plano h3 { font-size: 1.5rem; color: var(--cor-primaria); }
-        .preco { font-size: 2.5rem; color: var(--cor-secundaria); font-weight: bold; margin: 20px 0; }
+        .card-plano h3 { font-size: 1.5rem; color: var(--cor-primaria); margin-bottom: 10px; }
+        .preco { font-size: 2.5rem; color: var(--cor-secundaria); font-weight: bold; margin-bottom: 20px; }
         .preco small { font-size: 1rem; color: #666; }
-        .features-list li { margin-bottom: 10px; color: #555; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        
+        .features-list { margin-bottom: 30px; text-align: left; flex-grow: 1; /* Faz a lista ocupar o espaço disponível e empurrar o botão */ }
+        .features-list li { margin-bottom: 10px; color: #555; border-bottom: 1px solid #eee; padding-bottom: 5px; font-size: 0.95rem; }
 
-        /* --- AJUSTE 4: CARROSSEL DE STREAMING --- */
+        /* Estilo do botão dentro do card */
+        .card-plano .btn-assinar {
+            background-color: var(--cor-primaria);
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: auto; /* EMPURRA O BOTÃO PARA O FINAL DO CARD */
+        }
+
+        /* --- CARROSSEL --- */
         .streaming-section { padding: 60px 0; background-color: white; text-align: center; overflow: hidden; }
-        
-        .slider {
-            height: 100px;
-            margin: auto;
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-        }
-        
-        .slide-track {
-            display: flex;
-            width: calc(250px * 10); /* 250px * Numero de Slides (Aprox) */
-            animation: scroll 20s linear infinite;
-        }
-        
-        .slide {
-            height: 100px;
-            width: 250px; /* Largura do espaço de cada logo */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .slide img {
-            height: 60%; /* Altura da Logo */
-            filter: grayscale(100%);
-            opacity: 0.7;
-            transition: 0.3s;
-        }
-
+        .slider { height: 100px; margin: auto; overflow: hidden; position: relative; width: 100%; }
+        .slide-track { display: flex; width: calc(250px * 20); animation: scroll 40s linear infinite; }
+        .slide { width: 250px; height: 100px; display: flex; align-items: center; justify-content: center; }
+        .slide img { height: 50px; filter: grayscale(100%); opacity: 0.6; transition: 0.3s; }
         .slide img:hover { filter: grayscale(0); opacity: 1; }
 
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 5)); } /* Move metade da pista (numero de logos originais) */
-        }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-250px * 10)); } }
 
-        /* --- COBERTURA E RODAPÉ --- */
+        /* --- RODAPÉ --- */
         .cobertura { background-color: var(--cor-primaria); color: white; padding: 60px 0; text-align: center; }
-        footer { background-color: #002244; color: #ddd; padding: 50px 0 20px 0; font-size: 0.9rem; }
+        footer { background-color: #002244; color: #ddd; padding: 50px 0 20px 0; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-col h4 { color: var(--cor-secundaria); margin-bottom: 20px; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
 
         /* --- RESPONSIVO (CELULAR) --- */
-/* --- RESPONSIVO (CELULAR) --- */
         @media (max-width: 768px) {
-            .nav-bar {
-                /* Forçamos os itens a ficarem em linha (Logo na esq, Botão na dir) */
-                flex-direction: row; 
-                height: 80px; /* Altura FIXA do cabeçalho branco */
-                padding: 0 15px;
-                position: relative; /* Necessário para o truque funcionar */
-            }
-            
+            .nav-bar { height: 70px; }
             .menu { display: none; }
-
-            /* TRUQUE DA LOGO GIGANTE NO CELULAR */
-            .logo-img {
-                height: 150px; /* Tamanho da logo (maior que o cabeçalho de 80px) */
-                max-height: unset; /* Remove limites antigos */
-                width: auto;
-                
-                /* Posicionamento absoluto para "flutuar" */
-                position: absolute;
-                top: -30px; /* Distância do topo */
-                left: 15px; /* Distância da esquerda */
-                z-index: 1001; /* Garante que fique na frente de tudo */
-            }
-
-            /* Ajuste do botão para ele não ficar embaixo da logo */
-            .btn-cliente {
-                position: absolute;
-                right: 15px; /* Cola o botão na direita */
-                top: 20px; /* Centraliza verticalmente na barra branca */
-                padding: 8px 15px; /* Botão um pouco menor no celular para caber */
-                font-size: 0.9rem;
-            }
-
-            /* Ajuste da imagem de fundo */
-            .hero {
-                /* Aumentamos o padding superior para o texto não ficar escondido atrás da logo vazada */
-                padding-top: 100px; 
-                background-position: 85% center !important; 
-            }
-
-            .hero h1 { font-size: 2rem; }
             
-            .hero p { 
-                white-space: normal; 
-                font-size: 1.1rem; 
+            .logo-img {
+                height: 120px; 
+                position: absolute;
+                top: -20px;
+                left: 10px;
+                z-index: 1001;
             }
+
+            .btn-cliente { padding: 8px 12px; font-size: 0.85rem; }
+
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { white-space: normal; font-size: 1rem; }
+
+            /* AJUSTE DOS PLANOS PARA 2 COLUNAS */
+            .planos-grid {
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 10px;
+                padding: 0 5px;
+            }
+
+            .card-plano {
+                padding: 15px 10px;
+            }
+
+            .card-plano h3 { font-size: 1rem; }
+            .preco { font-size: 1.4rem; }
+            .features-list li { font-size: 0.75rem; }
+            .categoria-titulo { font-size: 0.8rem; padding: 8px 15px; }
         }
     </style>
 </head>
@@ -252,7 +200,6 @@
             <a href="#">
                 <img src="logo.png" alt="Cabelo Net Logo" class="logo-img">
             </a>
-
             <nav>
                 <ul class="menu">
                     <li><a href="#inicio">Início</a></li>
@@ -268,89 +215,94 @@
     <section id="inicio" class="hero">
         <div class="container hero-text-container">
             <h1 style="color: MidnightBlue">Internet Fibra Óptica em Paulista</h1>
-            <p style="color: MidnightBlue">Conexão ultraveloz com atendimento humanizado nos bairros Paratibe e Arthur Lundgren 1 e 2.</p>
-            <a href="https://wa.me/558132642286" class="btn-cta" target="_blank">Assinar Agora pelo WhatsApp</a>
-        </div>
-    </section>
-
-    <section class="features">
-        <div class="container">
-            <div class="features-grid">
-                <div class="feature-item">
-                    <h3>⚡ 100% Fibra Óptica</h3>
-                    <p>Estabilidade total para jogar e assistir sem travar.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>🤝 Atendimento Humano</h3>
-                    <p>Fale com gente de verdade, sem robôs complicados.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>🎬 Apps Inclusos</h3>
-                    <p>Filmes, séries e canais liberados como cortesia.</p>
-                </div>
-            </div>
+            <p style="color: MidnightBlue">Conexão ultraveloz em Paratibe e Arthur Lundgren 1 e 2.</p>
+            <a href="https://wa.me/558132642286" class="btn-cta" target="_blank">Assinar pelo WhatsApp</a>
         </div>
     </section>
 
     <section id="planos" class="planos-section">
         <div class="container">
-            <h2 class="section-title">Escolha o seu plano ideal</h2>
-            <p class="section-subtitle">Temos opções com roteador incluso ou para quem já tem equipamento.</p>
+            <h2 class="section-title">Nossos Planos</h2>
+            <p class="section-subtitle">Escolha a velocidade que combina com você</p>
 
-            <div class="categoria-titulo">Plano Completo (Roteador Incluso)</div>
+            <div class="categoria-titulo">Roteador Incluso (Comodato)</div>
             <div class="planos-grid">
                 <div class="card-plano">
                     <h3>100 MEGA</h3>
                     <div class="preco">R$ 65<small>,00</small></div>
-                    <ul class="features-list"><li>Roteador em Comodato</li><li>Apps de Filmes e Séries</li></ul><br>
-                    <a href="#" class="btn-cliente" style="background:var(--cor-secundaria)">Assinar</a>
+                    <ul class="features-list">
+                        <li>Roteador incluso</li>
+                        <li>Apps de Filmes</li>
+                    </ul>
+                    <a href="https://wa.me/558132642286" class="btn-assinar" style="background:var(--cor-secundaria)">Assinar</a>
                 </div>
                 <div class="card-plano">
                     <h3>200 MEGA</h3>
                     <div class="preco">R$ 75<small>,00</small></div>
-                    <ul class="features-list"><li>Roteador em Comodato</li><li>Apps de Filmes e Séries</li></ul><br>
-                    <a href="#" class="btn-cliente" style="background:var(--cor-secundaria)">Assinar</a>
+                    <ul class="features-list">
+                        <li>Roteador incluso</li>
+                        <li>Apps de Filmes</li>
+                    </ul>
+                    <a href="https://wa.me/558132642286" class="btn-assinar" style="background:var(--cor-secundaria)">Assinar</a>
                 </div>
-                <div class="card-plano" style="border-top: 5px solid var(--cor-secundaria); transform: scale(1.05);">
-                    <span style="background:var(--cor-secundaria); color:white; padding:2px 10px; border-radius:10px; font-size:12px;">MAIS VENDIDO</span>
+                <div class="card-plano" style="border-top: 5px solid var(--cor-secundaria);">
                     <h3>300 MEGA</h3>
                     <div class="preco">R$ 80<small>,00</small></div>
-                    <ul class="features-list"><li>Roteador em Comodato</li><li>Apps de Filmes e Séries</li></ul><br>
-                    <a href="#" class="btn-cliente" style="background:var(--cor-secundaria)">Assinar</a>
+                    <ul class="features-list">
+                        <li>Roteador incluso</li>
+                        <li>Apps de Filmes</li>
+                        <li>Prioridade Técnica</li>
+                    </ul>
+                    <a href="https://wa.me/558132642286" class="btn-assinar" style="background:var(--cor-secundaria)">Assinar</a>
                 </div>
                 <div class="card-plano">
                     <h3>500 MEGA</h3>
                     <div class="preco">R$ 90<small>,00</small></div>
-                    <ul class="features-list"><li>Roteador Gigabit</li><li>Apps de Filmes e Séries</li></ul><br>
-                    <a href="#" class="btn-cliente" style="background:var(--cor-secundaria)">Assinar</a>
+                    <ul class="features-list">
+                        <li>Roteador Giga</li>
+                        <li>Apps de Filmes</li>
+                    </ul>
+                    <a href="https://wa.me/558132642286" class="btn-assinar" style="background:var(--cor-secundaria)">Assinar</a>
                 </div>
             </div>
 
-            <div class="categoria-titulo" style="background-color: #555;">Tenho meu Roteador (Desconto Especial)</div>
+            <div class="categoria-titulo" style="background-color: #555;">Já tenho Roteador (Desconto)</div>
             <div class="planos-grid">
                 <div class="card-plano">
                     <h3>100 MEGA</h3>
                     <div class="preco">R$ 55<small>,00</small></div>
-                    <ul class="features-list"><li>Sem Roteador</li><li>Apps de Filmes e Séries</li></ul><br>
-                    <a href="#" class="btn-cliente">Assinar</a>
+                    <ul class="features-list">
+                        <li>Sem roteador</li>
+                        <li>Apps de Filmes</li>
+                    </ul>
+                    <a href="https://wa.me/558132642286" class="btn-assinar">Assinar</a>
                 </div>
                 <div class="card-plano">
                     <h3>200 MEGA</h3>
                     <div class="preco">R$ 65<small>,00</small></div>
-                    <ul class="features-list"><li>Sem Roteador</li><li>Apps de Filmes e Séries</li></ul><br>
-                    <a href="#" class="btn-cliente">Assinar</a>
+                    <ul class="features-list">
+                        <li>Sem roteador</li>
+                        <li>Apps de Filmes</li>
+                    </ul>
+                    <a href="https://wa.me/558132642286" class="btn-assinar">Assinar</a>
                 </div>
                 <div class="card-plano">
                     <h3>300 MEGA</h3>
                     <div class="preco">R$ 70<small>,00</small></div>
-                    <ul class="features-list"><li>Sem Roteador</li><li>Apps de Filmes e Séries</li></ul><br>
-                    <a href="#" class="btn-cliente">Assinar</a>
+                    <ul class="features-list">
+                        <li>Sem roteador</li>
+                        <li>Apps de Filmes</li>
+                    </ul>
+                    <a href="https://wa.me/558132642286" class="btn-assinar">Assinar</a>
                 </div>
                 <div class="card-plano">
                     <h3>500 MEGA</h3>
                     <div class="preco">R$ 80<small>,00</small></div>
-                    <ul class="features-list"><li>Sem Roteador</li><li>Apps de Filmes e Séries</li></ul><br>
-                    <a href="#" class="btn-cliente">Assinar</a>
+                    <ul class="features-list">
+                        <li>Sem roteador</li>
+                        <li>Apps de Filmes</li>
+                    </ul>
+                    <a href="https://wa.me/558132642286" class="btn-assinar">Assinar</a>
                 </div>
             </div>
         </div>
@@ -358,80 +310,46 @@
 
     <section id="apps" class="streaming-section">
         <div class="container">
-            <h2 class="section-title">O melhor do entretenimento está aqui</h2>
-            <p style="margin-bottom:30px">Assine a Cabelo Net e ganhe acesso aos nossos parceiros.</p>
-            
+            <h2 class="section-title">Apps de Entretenimento Inclusos</h2>
             <div class="slider">
                 <div class="slide-track">
-                    <div class="slide"><img src="amazontest.png" alt=""></div>
-                    <div class="slide"><img src="sportv.png" alt=""></div>
-                    <div class="slide"><img src="netflixtest.png" alt=""></div>
-                    <div class="slide"><img src="paramountplustest.png" alt=""></div>
-                    <div class="slide"><img src="espn.png" alt=""></div>
-
-                    <div class="slide"><img src="hbomax.png" alt=""></div>
-                    <div class="slide"><img src="Disney test.png" alt=""></div>
-                    <div class="slide"><img src="globoplaytest.png" alt=""></div>
-                    <div class="slide"><img src="ufc.png" alt=""></div>
-                    <div class="slide"><img src="cartoontest.png" alt=""></div>
+                    <div class="slide"><img src="amazontest.png" alt="Amazon"></div>
+                    <div class="slide"><img src="sportv.png" alt="Sportv"></div>
+                    <div class="slide"><img src="netflixtest.png" alt="Netflix"></div>
+                    <div class="slide"><img src="paramountplustest.png" alt="Paramount"></div>
+                    <div class="slide"><img src="espn.png" alt="ESPN"></div>
+                    <div class="slide"><img src="hbomax.png" alt="HBO"></div>
+                    <div class="slide"><img src="Disney test.png" alt="Disney"></div>
+                    <div class="slide"><img src="globoplaytest.png" alt="Globoplay"></div>
+                    <div class="slide"><img src="ufc.png" alt="UFC"></div>
+                    <div class="slide"><img src="cartoontest.png" alt="Cartoon"></div>
+                    <div class="slide"><img src="amazontest.png" alt="Amazon"></div>
+                    <div class="slide"><img src="sportv.png" alt="Sportv"></div>
+                    <div class="slide"><img src="netflixtest.png" alt="Netflix"></div>
+                    <div class="slide"><img src="paramountplustest.png" alt="Paramount"></div>
+                    <div class="slide"><img src="espn.png" alt="ESPN"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contato" class="cobertura">
-        <div class="container">
-            <h2>Estamos pertinho de você</h2>
-            <p style="margin-top: 15px; font-size: 1.1rem;">
-                Atendemos com exclusividade em Paulista - PE<br>
-                <strong>Bairros:</strong> Paratibe, Arthur Lundgren 1 e Arthur Lundgren 2.
-            </p>
-        </div>
-    </section>
-
-    <footer>
+    <footer id="contato">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>Cabelo Net</h4>
-                    <p>O melhor provedor de internet de Paulista. Conexão rápida e suporte que resolve.</p>
+                    <p>Internet Fibra em Paulista-PE. Paratibe e Arthur Lundgren.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Contato</h4>
                     <p>📞 (81) 3264-2286</p>
                 </div>
-                <div class="footer-col">
-                    <h4>Links Úteis</h4>
-                    <p><a href="https://www.speedtest.net/" style="color:#ddd" target="_blank">Teste de Velocidade</a></p>
-                </div>
             </div>
             <div class="copyright">
-                &copy; 2024 Cabelo Net. Todos os direitos reservados.
+                &copy; 2026 Cabelo Net. Todos os direitos reservados.
             </div>
         </div>
     </footer>
 
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
