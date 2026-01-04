@@ -194,55 +194,105 @@
         .footer-col h4 { color: var(--cor-secundaria); margin-bottom: 20px; }
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
 
-        /* --- RESPONSIVO (CELULAR) --- */
-/* --- RESPONSIVO (CELULAR) --- */
-        @media (max-width: 768px) {
-            .nav-bar {
-                /* Forçamos os itens a ficarem em linha (Logo na esq, Botão na dir) */
-                flex-direction: row; 
-                height: 80px; /* Altura FIXA do cabeçalho branco */
-                padding: 0 15px;
-                position: relative; /* Necessário para o truque funcionar */
-            }
-            
-            .menu { display: none; }
+      /* --- RESPONSIVO (CELULAR) --- */
+@media (max-width: 768px) {
+    
+    /* CABEÇALHO */
+    .nav-bar {
+        /* Forçamos os itens a ficarem em linha */
+        flex-direction: row; 
+        height: 80px; 
+        padding: 0 15px;
+        position: relative; 
+    }
+    
+    .menu { display: none; } /* Esconde o menu do meio */
 
-            /* TRUQUE DA LOGO GIGANTE NO CELULAR */
-            .logo-img {
-                height: 150px; /* Tamanho da logo (maior que o cabeçalho de 80px) */
-                max-height: unset; /* Remove limites antigos */
-                width: auto;
-                
-                /* Posicionamento absoluto para "flutuar" */
-                position: absolute;
-                top: -30px; /* Distância do topo */
-                left: 15px; /* Distância da esquerda */
-                z-index: 1001; /* Garante que fique na frente de tudo */
-            }
+    /* LOGO GIGANTE "FLUTUANDO" */
+    .logo-img {
+        height: 140px; /* Tamanho da logo */
+        max-height: unset; 
+        width: auto;
+        position: absolute; /* Tira ela do fluxo normal */
+        top: -20px; /* Sobe um pouco para sair da barra branca */
+        left: 10px; 
+        z-index: 1001; /* Fica na frente de tudo */
+    }
 
-            /* Ajuste do botão para ele não ficar embaixo da logo */
-            .btn-cliente {
-                position: absolute;
-                right: 15px; /* Cola o botão na direita */
-                top: 20px; /* Centraliza verticalmente na barra branca */
-                padding: 8px 15px; /* Botão um pouco menor no celular para caber */
-                font-size: 0.9rem;
-            }
+    /* BOTÃO ÁREA DO CLIENTE (TOPO) */
+    /* Ajuste para ele não ficar embaixo da logo */
+    .nav-bar .btn-cliente {
+        position: absolute;
+        right: 15px; 
+        top: 22px; 
+        padding: 8px 15px; 
+        font-size: 0.85rem;
+        width: auto; /* Garante que não estique */
+    }
 
-            /* Ajuste da imagem de fundo */
-            .hero {
-                /* Aumentamos o padding superior para o texto não ficar escondido atrás da logo vazada */
-                padding-top: 100px; 
-                background-position: 85% center !important; 
-            }
+    /* HERO (BANNER PRINCIPAL) */
+    .hero {
+        /* Aumentamos o padding superior p/ texto não ficar atrás da logo */
+        padding-top: 120px; 
+        background-position: 85% center !important; 
+    }
 
-            .hero h1 { font-size: 2rem; }
-            
-            .hero p { 
-                white-space: normal; 
-                font-size: 1.1rem; 
-            }
-        }
+    .hero h1 { font-size: 2rem; }
+    
+    .hero p { 
+        white-space: normal; 
+        font-size: 1.1rem; 
+    }
+
+    /* --- MUDANÇA NOS PLANOS (2 POR LINHA + BOTÃO ALINHADO) --- */
+    .planos-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 Colunas forçadas */
+        gap: 8px; /* Espaço pequeno entre eles para caber na tela */
+        padding: 0 5px;
+    }
+
+    .card-plano {
+        padding: 15px 8px; /* Padding interno menor */
+        display: flex; /* Transforma o card em flexbox */
+        flex-direction: column; /* Organiza itens em coluna */
+        justify-content: space-between; /* Espalha o conteúdo */
+        height: auto; /* Altura automática */
+        min-height: 350px; /* Altura mínima para ficarem iguais */
+    }
+
+    .card-plano h3 {
+        font-size: 1.1rem; /* Fonte do título menor */
+        margin-bottom: 5px;
+    }
+
+    .preco {
+        font-size: 1.6rem; /* Preço ajustado */
+        margin: 10px 0;
+    }
+
+    .features-list li {
+        font-size: 0.8rem; /* Letra da lista menor */
+        line-height: 1.3;
+    }
+
+    /* BOTÃO DE ASSINAR (DENTRO DO CARD) */
+    .card-plano .btn-cliente {
+        position: static; /* Reseta a posição absoluta do header */
+        display: block;
+        width: 100%; /* Botão ocupa toda largura do card */
+        margin-top: auto; /* EMPURRA O BOTÃO PARA O FINAL DO CARD */
+        padding: 10px 0;
+        text-align: center;
+        background-color: var(--cor-secundaria); /* Garante o laranja */
+    }
+
+    /* Ajuste de titulos de categoria */
+    .categoria-titulo {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+        max-width: 90%;
+    }
+}
     </style>
 </head>
 <body>
@@ -414,3 +464,4 @@
 </body>
 
 </html>
+
