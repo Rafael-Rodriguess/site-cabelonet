@@ -11,17 +11,18 @@
             --cor-secundaria: #FF6600;
             --cor-fundo-claro: #f4f7f6;
             --cor-texto: #333;
+            --cor-header-azul: #159ff8; 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         html { scroll-behavior: smooth; }
-        body { color: var(--cor-texto); line-height: 1.6; overflow-x: hidden; } /* overflow-x evita barra lateral indesejada */
+        body { color: var(--cor-texto); line-height: 1.6; overflow-x: hidden; }
         a { text-decoration: none; }
         ul { list-style: none; }
 
         /* --- CABEÇALHO --- */
         header {
-            background-color: white;
+            background-color: var(--cor-header-azul);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
@@ -35,37 +36,37 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 80px; 
         }
 
-        /* AJUSTE 1: LOGO COMO IMAGEM */
+        /* --- LOGO (DESKTOP) --- */
         .logo-img {
-            max-height: 250px; /* Ajuste a altura da sua logo aqui */
+            max-height: 70px; 
             width: auto;
             display: block;
+            padding: 5px 0; 
         }
 
         .menu { display: flex; gap: 20px; }
-        .menu a { color: var(--cor-primaria); font-weight: 500; transition: 0.3s; }
-        .menu a:hover { color: var(--cor-secundaria); }
-        .btn-cliente { background-color: var(--cor-primaria); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; }
+        
+        .menu a { 
+            color: white; 
+            font-weight: 500; 
+            transition: 0.3s; 
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .menu a:hover { color: #f0f0f0; text-decoration: underline; }
+        
+        .btn-cliente { background-color: white; color: var(--cor-header-azul); padding: 10px 20px; border-radius: 5px; font-weight: bold; }
 
-        /* --- HERO SECTION (BANNER COM FOTO) --- */
-        /* AJUSTE 3: IMAGEM DE FUNDO */
+        /* --- HERO SECTION --- */
         .hero {
-            /* rgba(255, 255, 255, X) -> Isso cria uma camada BRANCA.
-               Mude o 0.7 para controlar a opacidade:
-               0.3 = Imagem mais visível
-               0.9 = Imagem muito apagada (quase branco total)
-            */
             background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                        url('background.png'); /* Certifique-se que o nome do arquivo está certo */
-            
+                        url('background.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            
-            color: white; /* Cor padrão, mas seu H1 já está sobrescrevendo para azul */
             padding: 160px 0 110px 0;
             text-align: center;
             min-height: 600px;
@@ -75,35 +76,20 @@
 
         .hero h1 { font-size: 3rem; margin-bottom: 20px; }
 
-        /* AJUSTE 2: FRASE EM UMA LINHA */
-        .hero-text-container {
-            width: 100%;
-            overflow: hidden; /* Garante que não estoure */
-        }
+        .hero-text-container { width: 100%; overflow: hidden; }
         
         .hero p {
-            font-size: 1.25rem; /* Aumentei levemente */
+            font-size: 1.25rem;
             margin-bottom: 40px;
-            
-            /* O segredo para manter em uma linha no Desktop */
             white-space: nowrap; 
             width: 100%;
         }
 
         /* --- ANIMAÇÃO DE PULSAR --- */
         @keyframes pulsar {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4);
-            }
-            50% {
-                transform: scale(1.05); /* Aumenta 5% */
-                box-shadow: 0 10px 25px rgba(255, 102, 0, 0.7); /* Sombra mais forte */
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4);
-            }
+            0% { transform: scale(1); box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 10px 25px rgba(255, 102, 0, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4); }
         }
 
         .btn-cta {
@@ -114,18 +100,15 @@
             border-radius: 50px;
             font-weight: bold;
             display: inline-block;
-            
-            /* AQUI ESTÁ A MÁGICA DO PULSO */
             animation: pulsar 2s infinite; 
             transition: all 0.3s;
         }
 
-        /* Quando passar o mouse, ele para de pulsar e fica grande */
         .btn-cta:hover {
-            animation: none; /* Pausa o pulso */
-            transform: scale(1.1); /* Fica maior */
+            animation: none;
+            transform: scale(1.1);
             box-shadow: 0 10px 30px rgba(255, 102, 0, 0.8);
-            background-color: #e55c00; /* Laranja um pouco mais escuro */
+            background-color: #e55c00;
         }
 
         /* --- DIFERENCIAIS --- */
@@ -148,65 +131,23 @@
         .preco small { font-size: 1rem; color: #666; }
         .features-list li { margin-bottom: 10px; color: #555; border-bottom: 1px solid #eee; padding-bottom: 5px; }
 
-        /* --- AJUSTE 4: CARROSSEL DE STREAMING --- */
-        .streaming-section { padding: 60px 0; background-color: white; text-align: center; overflow: hidden; }
-        
-        .slider {
-            height: 100px;
-            margin: auto;
-            overflow: hidden;
-            position: relative;
+        .card-plano .btn-cliente {
+            background-color: var(--cor-secundaria);
+            color: white;
+            font-weight: normal;
+        }
+
+        /* --- STREAMING (LIMPO) --- */
+        .streaming-section {
+            /* Altura mínima para aparecer a imagem de fundo */
+            min-height: 400px; 
+            
             width: 100%;
-        }
-        
-        .slide-track {
-            display: flex;
-            width: calc(250px * 10); /* 250px * Numero de Slides (Aprox) */
-            animation: scroll 20s linear infinite;
-        }
-        
-        /* --- CONFIGURAÇÃO DO SLIDER PARA LOGOS PADRONIZADAS --- */
-
-        /* 1. O container do slide (a caixa invisível em volta da logo) */
-        .slide {
-            width: 250px;      /* Largura da área da logo */
-            height: 100px;     /* Altura da área da logo */
-            
-            /* Centralização Absoluta (Horizontal e Vertical) */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            
-            padding: 0 15px;   /* Um respiro nas laterais para elas não colarem */
-        }
-        
-        /* 2. A imagem da logo em si */
-        .slide img {
-            /* O TRUQUE DO TAMANHO: */
-            max-width: 180px;  /* Largura máxima permitida */
-            max-height: 70px;  /* Altura máxima permitida */
-            
-            width: auto;       /* Deixa a largura automática para manter proporção */
-            height: auto;      /* Deixa a altura automática */
-            
-            object-fit: contain; /* Garante que a imagem caiba na caixa sem esticar */
-            
-            /* Efeito visual (Preto e branco para colorido) */
-            filter: grayscale(100%);
-            opacity: 0.6;
-            transition: all 0.3s ease;
-        }
-        
-        /* Quando passar o mouse */
-        .slide img:hover {
-            filter: grayscale(0);
-            opacity: 1;
-            transform: scale(1.1); /* Um leve zoom para dar destaque */
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 5)); } /* Move metade da pista (numero de logos originais) */
+            background-image: url('streaming.png'); 
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+            padding: 0; 
         }
 
         /* --- COBERTURA E RODAPÉ --- */
@@ -217,105 +158,89 @@
         .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
 
       /* --- RESPONSIVO (CELULAR) --- */
-@media (max-width: 768px) {
+    @media (max-width: 768px) {
     
-    /* CABEÇALHO */
-    .nav-bar {
-        /* Forçamos os itens a ficarem em linha */
-        flex-direction: row; 
-        height: 80px; 
-        padding: 0 15px;
-        position: relative; 
-    }
+        .nav-bar {
+            flex-direction: row; 
+            height: 80px; 
+            padding: 0 15px;
+            position: relative; 
+        }
     
-    .menu { display: none; } /* Esconde o menu do meio */
+        .menu { display: none; } 
 
-    /* LOGO GIGANTE "FLUTUANDO" */
-    .logo-img {
-        height: 140px; /* Tamanho da logo */
-        max-height: unset; 
-        width: auto;
-        position: absolute; /* Tira ela do fluxo normal */
-        top: -20px; /* Sobe um pouco para sair da barra branca */
-        left: 10px; 
-        z-index: 1001; /* Fica na frente de tudo */
-    }
+        /* LOGO MOBILE */
+        .logo-img {
+            position: static; 
+            height: auto; 
+            max-height: 60px; 
+            width: auto;
+            margin: 0;
+            z-index: 1; 
+        }
 
-    /* BOTÃO ÁREA DO CLIENTE (TOPO) */
-    /* Ajuste para ele não ficar embaixo da logo */
-    .nav-bar .btn-cliente {
-        position: absolute;
-        right: 15px; 
-        top: 22px; 
-        padding: 8px 15px; 
-        font-size: 0.85rem;
-        width: auto; /* Garante que não estique */
-    }
+        .nav-bar .btn-cliente {
+            position: static; 
+            margin-left: auto; 
+            padding: 8px 15px; 
+            font-size: 0.85rem;
+            width: auto;
+            background-color: white;
+            color: var(--cor-header-azul);
+        }
 
-    /* HERO (BANNER PRINCIPAL) */
-    .hero {
-        /* Aumentamos o padding superior p/ texto não ficar atrás da logo */
-        padding-top: 120px; 
-        background-position: 85% center !important; 
-    }
+        .hero {
+            padding-top: 120px; 
+            background-position: 85% center !important; 
+        }
 
-    .hero h1 { font-size: 2rem; }
-    
-    .hero p { 
-        white-space: normal; 
-        font-size: 1.1rem; 
-    }
+        .hero h1 { font-size: 2rem; }
+        .hero p { white-space: normal; font-size: 1.1rem; }
 
-    /* --- MUDANÇA NOS PLANOS (2 POR LINHA + BOTÃO ALINHADO) --- */
-    .planos-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 Colunas forçadas */
-        gap: 8px; /* Espaço pequeno entre eles para caber na tela */
-        padding: 0 5px;
-    }
+        .planos-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            padding: 0 5px;
+        }
 
-    .card-plano {
-        padding: 15px 8px; /* Padding interno menor */
-        display: flex; /* Transforma o card em flexbox */
-        flex-direction: column; /* Organiza itens em coluna */
-        justify-content: space-between; /* Espalha o conteúdo */
-        height: auto; /* Altura automática */
-        min-height: 350px; /* Altura mínima para ficarem iguais */
-    }
+        .card-plano {
+            padding: 15px 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: auto;
+            min-height: 350px;
+        }
 
-    .card-plano h3 {
-        font-size: 1.1rem; /* Fonte do título menor */
-        margin-bottom: 5px;
-    }
+        .card-plano h3 { font-size: 1.1rem; margin-bottom: 5px; }
+        .preco { font-size: 1.6rem; margin: 10px 0; }
+        .features-list li { font-size: 0.8rem; line-height: 1.3; }
 
-    .preco {
-        font-size: 1.6rem; /* Preço ajustado */
-        margin: 10px 0;
-    }
+        .card-plano .btn-cliente {
+            position: static;
+            display: block;
+            width: 100%;
+            margin-top: auto;
+            padding: 10px 0;
+            text-align: center;
+            background-color: var(--cor-secundaria);
+            color: white;
+        }
 
-    .features-list li {
-        font-size: 0.8rem; /* Letra da lista menor */
-        line-height: 1.3;
-    }
+        .categoria-titulo {
+            font-size: 0.9rem;
+            padding: 8px 15px;
+            max-width: 90%;
+        }
 
-    /* BOTÃO DE ASSINAR (DENTRO DO CARD) */
-    .card-plano .btn-cliente {
-        position: static; /* Reseta a posição absoluta do header */
-        display: block;
-        width: 100%; /* Botão ocupa toda largura do card */
-        margin-top: auto; /* EMPURRA O BOTÃO PARA O FINAL DO CARD */
-        padding: 10px 0;
-        text-align: center;
-        background-color: var(--cor-secundaria); /* Garante o laranja */
+        /* Ajuste da altura do banner de streaming no celular */
+        .streaming-section {
+            min-height: 300px; 
+        }
     }
-
-    /* Ajuste de titulos de categoria */
-    .categoria-titulo {
-        font-size: 0.9rem;
-        padding: 8px 15px;
-        max-width: 90%;
-    }
-}
     </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -367,7 +292,7 @@
     <section id="planos" class="planos-section">
         <div class="container">
             <h2 class="section-title">Escolha o seu plano ideal</h2>
-            <p class="section-subtitle">Temos opções com roteador incluso ou para quem já tem equipamento.</p>
+            <p class="section-subtitle">Temos a opção perfeita para sua casa.</p>
 
             <div class="categoria-titulo">Plano Completo (Roteador Incluso)</div>
             <div class="planos-grid">
@@ -375,81 +300,32 @@
                     <h3>100 MEGA</h3>
                     <div class="preco">R$ 65<small>,00</small></div>
                     <ul class="features-list"><li>Roteador em Comodato</li><li>Apps de Filmes e Séries</li></ul><br>
-                    <a href="#" class="btn-cliente" style="background:var(--cor-secundaria)">Assinar</a>
+                    <a href="#" class="btn-cliente">Assinar</a>
                 </div>
                 <div class="card-plano">
                     <h3>200 MEGA</h3>
                     <div class="preco">R$ 75<small>,00</small></div>
                     <ul class="features-list"><li>Roteador em Comodato</li><li>Apps de Filmes e Séries</li></ul><br>
-                    <a href="#" class="btn-cliente" style="background:var(--cor-secundaria)">Assinar</a>
+                    <a href="#" class="btn-cliente">Assinar</a>
                 </div>
                 <div class="card-plano" style="border-top: 5px solid var(--cor-secundaria); transform: scale(1.05);">
                     <span style="background:var(--cor-secundaria); color:white; padding:2px 10px; border-radius:10px; font-size:12px;">MAIS VENDIDO</span>
                     <h3>300 MEGA</h3>
                     <div class="preco">R$ 80<small>,00</small></div>
                     <ul class="features-list"><li>Roteador em Comodato</li><li>Apps de Filmes e Séries</li></ul><br>
-                    <a href="#" class="btn-cliente" style="background:var(--cor-secundaria)">Assinar</a>
+                    <a href="#" class="btn-cliente">Assinar</a>
                 </div>
                 <div class="card-plano">
                     <h3>500 MEGA</h3>
                     <div class="preco">R$ 90<small>,00</small></div>
                     <ul class="features-list"><li>Roteador Gigabit</li><li>Apps de Filmes e Séries</li></ul><br>
-                    <a href="#" class="btn-cliente" style="background:var(--cor-secundaria)">Assinar</a>
-                </div>
-            </div>
-
-            <div class="categoria-titulo" style="background-color: #555;">Tenho meu Roteador (Desconto Especial)</div>
-            <div class="planos-grid">
-                <div class="card-plano">
-                    <h3>100 MEGA</h3>
-                    <div class="preco">R$ 55<small>,00</small></div>
-                    <ul class="features-list"><li>Sem Roteador</li><li>Apps de Filmes e Séries</li></ul><br>
-                    <a href="#" class="btn-cliente">Assinar</a>
-                </div>
-                <div class="card-plano">
-                    <h3>200 MEGA</h3>
-                    <div class="preco">R$ 65<small>,00</small></div>
-                    <ul class="features-list"><li>Sem Roteador</li><li>Apps de Filmes e Séries</li></ul><br>
-                    <a href="#" class="btn-cliente">Assinar</a>
-                </div>
-                <div class="card-plano">
-                    <h3>300 MEGA</h3>
-                    <div class="preco">R$ 70<small>,00</small></div>
-                    <ul class="features-list"><li>Sem Roteador</li><li>Apps de Filmes e Séries</li></ul><br>
-                    <a href="#" class="btn-cliente">Assinar</a>
-                </div>
-                <div class="card-plano">
-                    <h3>500 MEGA</h3>
-                    <div class="preco">R$ 80<small>,00</small></div>
-                    <ul class="features-list"><li>Sem Roteador</li><li>Apps de Filmes e Séries</li></ul><br>
                     <a href="#" class="btn-cliente">Assinar</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="apps" class="streaming-section">
-        <div class="container">
-            <h2 class="section-title">O melhor do entretenimento está aqui</h2>
-            <p style="margin-bottom:30px">Assine a Cabelo Net e ganhe acesso aos nossos parceiros.</p>
-            
-            <div class="slider">
-                <div class="slide-track">
-                    <div class="slide"><img src="amazontest.png" alt=""></div>
-                    <div class="slide"><img src="sportv.png" alt=""></div>
-                    <div class="slide"><img src="netflixtest.png" alt=""></div>
-                    <div class="slide"><img src="paramountplustest.png" alt=""></div>
-                    <div class="slide"><img src="espn.png" alt=""></div>
-
-                    <div class="slide"><img src="hbomax.png" alt=""></div>
-                    <div class="slide"><img src="Disney test.png" alt=""></div>
-                    <div class="slide"><img src="globoplaytest.png" alt=""></div>
-                    <div class="slide"><img src="ufc.png" alt=""></div>
-                    <div class="slide"><img src="cartoontest.png" alt=""></div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <section id="apps" class="streaming-section"></section>
 
     <section id="contato" class="cobertura">
         <div class="container">
@@ -470,7 +346,13 @@
                 </div>
                 <div class="footer-col">
                     <h4>Contato</h4>
-                    <p>📞 (81) 3264-2286</p>
+                    <p><i class="fa-solid fa-phone" style="margin-right: 8px;"></i>(81) 3264-2286</p>
+                    
+                    <p style="margin-top: 8px;">
+                        <a href="https://www.instagram.com/cabelo_net/" target="_blank" style="color:#ddd; text-decoration: none; display: flex; align-items: center;">
+                            <i class="fa-brands fa-instagram" style="font-size: 1.3rem; margin-right: 8px;"></i> @cabelo_net
+                        </a>
+                    </p>
                 </div>
                 <div class="footer-col">
                     <h4>Links Úteis</h4>
@@ -484,7 +366,4 @@
     </footer>
 
 </body>
-
 </html>
-
-
